@@ -1,0 +1,47 @@
+{
+  "name": "lifeio-web-e2e",
+  "version": "1.1.3",
+  "description": "Engage UI e2e tests",
+  "scripts": {
+    "check-format": "prettier --check .",
+    "delete-reports": "rimraf ./reports/* || true",
+    "pretest": "npm run delete-reports",
+    "postinstall": "npx playwright install",
+    "format": "prettier --write .",
+    "check-lint": "eslint . --ext ts --fix",
+    "check-all": "npm run format && npm run check-lint",
+    "test": "playwright test",
+    "test:regression": "npm test -- --grep='@criticalPath|@extended|@smoke'",
+    "test:smoke": "npm test -- --grep='@smoke' --workers=1",
+    "test:smoke-stg": "npm test -- --grep='@stg|@smoke' --workers=2",
+    "report": "npx playwright show-report ./reports/html",
+    "prepare": "husky install"
+  },
+  "keywords": [
+    "Engage",
+    "Playwright",
+    "e2e"
+  ],
+  "author": "Dzmitry_Shaplyka@epam.com",
+  "license": "ISC",
+  "devDependencies": {
+    "@faker-js/faker": "^7.6.0",
+    "@playwright/test": "1.31.0",
+    "@reportportal/agent-js-playwright": "^5.0.8",
+    "@types/lodash": "^4.14.191",
+    "@types/node": "^18.14.0",
+    "@typescript-eslint/eslint-plugin": "^5.53.0",
+    "@typescript-eslint/parser": "^5.53.0",
+    "dotenv": "^16.0.3",
+    "eslint": "^8.34.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-import": "^2.27.5",
+    "husky": "^8.0.3",
+    "lodash": "^4.17.21",
+    "prettier": "^2.8.4",
+    "rimraf": "^4.1.2",
+    "typescript": "^4.9.5",
+    "winston": "^3.8.2"
+  }
+}
