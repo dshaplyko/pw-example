@@ -1,1 +1,0 @@
-type TCompare = 'MORE_THAN' | 'MORE_OR_EQUAL' | 'LESS_THAN' | 'LESS_OR_EQUAL' | 'EQUAL';

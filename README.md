@@ -4,7 +4,7 @@
 
 [1 - Description](#description)  
 [2 - Installation](#installation)  
-[3 - How to Run test scenarios](#how_to_run)  
+[3 - How to Run test scenarios](#how_to_run)
 
 <a name="description"/>
 
@@ -32,5 +32,4 @@ NPM version - 8 (with `lockfileVersion: 2`)
 
 ```sh
 1. npm test
-
-```s
+```
