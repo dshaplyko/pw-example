@@ -14,7 +14,7 @@ export default defineConfig({
   reporter: process.env.CI ? (RP_CI as ReporterDescription[]) : (RP_LOCAL as ReporterDescription[]),
   outputDir: './reports/result',
   use: {
-    baseURL: 'https://www.epam.com/',
+    baseURL: 'https://www.epam.com',
     actionTimeout: 0,
     viewport: {
       width: 1600,

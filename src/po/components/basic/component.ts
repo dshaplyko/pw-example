@@ -17,6 +17,9 @@ export abstract class Component {
     this.rootLocator = locator;
   }
 
+  /**
+   * @returns {string} - returns type of the component
+   */
   get myType(): string {
     return 'Component';
   }
@@ -32,7 +35,7 @@ export abstract class Component {
     return this.name;
   }
 
-  private getErrorMessage(action: string): string {
+  getErrorMessage(action: string): string {
     return `The ${this.myType} with name "${this.componentName}" and locator ${this.rootLocator} ${action}`;
   }
 

@@ -1,6 +1,7 @@
 import { Page, test } from '@playwright/test';
 import { Header } from '../components/header.component';
 import { Cookie } from '../components/cookie.component';
+import config from '../../../playwright.config';
 
 interface IPage {
   readonly page: Page;
@@ -20,7 +21,8 @@ export default abstract class BasePage implements IPage {
   }
 
   async goto(url: string): Promise<void> {
-    await test.step(`Opening the url "${url}"`, async () => {
+    const urlToNavigate = config.use.baseURL + url;
+    await test.step(`Opening the url "${urlToNavigate}"`, async () => {
       await this.page.goto(url, { waitUntil: 'networkidle' });
     });
   }
