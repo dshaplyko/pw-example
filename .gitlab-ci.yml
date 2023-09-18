@@ -1,0 +1,46 @@
+stages:
+  - test-environment
+
+variables:
+  NODE_DOCKER_IMAGE: '$CI_IMAGE_PLAYWRIGHT'
+  ENV:
+    value: 'pre-prod'
+    description: 'Environment to test. Currently supported values BZ: `qa`, `pre-prod`, `prod`. EV: `ev-qa`, `ev-pre-prod`, `ev-prod` BK: `bk-qa`, `bk-pre-prod`, `bk-prod`'
+  TYPE:
+    value: 'regression'
+    description: 'Which kind of test you gonna run. Currently supported values: `smoke`, `regression`.'
+  TENANT:
+    value: 'bz'
+    description: 'Platform to test. Currently supported values: `bz`, `ev`, `bk`.'
+
+.manual_pipeline:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "web" || $CI_PIPELINE_SOURCE == "schedule" || $CI_PIPELINE_SOURCE == "pipeline"'
+
+e2e-autotests:
+  stage: test-environment
+  image: $NODE_DOCKER_IMAGE
+  dependencies: []
+  rules: !reference [.manual_pipeline, rules]
+  before_script:
+    - npm ci --cache .npm --prefer-offline
+  script:
+    - echo -e "\e[93mPlaywright gonna run $TENANT $TYPE test for $ENV environment.\e[0m";
+    - npm run test:$TENANT:$TYPE
+    - echo $?
+  tags:
+    - ARM64-dedicated-resources
+  cache:
+    key:
+      files:
+        - package-lock.json
+      prefix: e2e-autotests
+    paths:
+      - .npm/
+    when: 'always'
+  artifacts:
+    paths:
+      - reports/
+    expire_in: 3 days
+    when: 'always'
+  allow_failure: true

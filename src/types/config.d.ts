@@ -1,0 +1,1 @@
+type TConfig = 'desktop' | 'mobile';

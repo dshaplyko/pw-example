@@ -1,1 +1,13 @@
 node_modules
+build
+/test-results/
+/playwright-report/
+/playwright/.cache/
+reports
+.env
+.DS_Store
+.vscode
+src/data/bz/states/state.json
+src/data/ev/states/state.json
+src/data/bk/states/state.json
+src/data/bz/articles.json

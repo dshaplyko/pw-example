@@ -1,0 +1,1 @@
+type TFonts = 'Roboto' | 'Merriweather';

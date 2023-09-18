@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "lib": ["ES2020", "DOM"],
+    "types": ["node"],
+    "module": "NodeNext",
+    "target": "ES2020",
+    "baseUrl": ".",
+    "rootDir": "./",
+    "allowUnreachableCode": false,
+    "experimentalDecorators": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "paths": {}
+  },
+  "include": ["./**//**/**/*.ts"],
+  "lib": ["esnext"],
+  "ts-node": {
+    "esm": true
+  }
+}
