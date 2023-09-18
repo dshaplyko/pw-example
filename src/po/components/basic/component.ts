@@ -40,6 +40,8 @@ export abstract class Component {
   }
 
   /**
+   * Checks if the component is visible or not on the page.
+   * @param visibility - A boolean indicating if the component should be visible.
    * @returns {Promise<void>} - returns promise
    */
   async shouldBeVisible(visibility = true): Promise<void> {

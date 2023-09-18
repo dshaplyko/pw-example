@@ -15,9 +15,9 @@
     "prepare": "husky install"
   },
   "keywords": [
-    "jOS",
     "Playwright",
-    "e2e"
+    "e2e",
+    "TypeScript"
   ],
   "author": "Dzmitry_Shaplyka@epam.com",
   "license": "ISC",
