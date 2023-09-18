@@ -23,7 +23,7 @@ export default abstract class BasePage implements IPage {
   async goto(url: string): Promise<void> {
     const urlToNavigate = config.use.baseURL + url;
     await test.step(`Opening the url "${urlToNavigate}"`, async () => {
-      await this.page.goto(url, { waitUntil: 'networkidle' });
+      await this.page.goto(url, { waitUntil: 'load' });
     });
   }
 

@@ -3,7 +3,7 @@
     "browser": true,
     "es2021": true
   },
-  "extends": ["airbnb-base", "prettier", "plugin:@typescript-eslint/recommended"],
+  "extends": ["airbnb-base", "prettier", "plugin:@typescript-eslint/recommended", "plugin:playwright/recommended"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": "latest",
@@ -22,6 +22,8 @@
     "no-param-reassign": "off",
     "class-methods-use-this": "off",
     "@typescript-eslint/no-floating-promises": "error",
+    "playwright/expect-expect": "off",
+    "playwright/no-conditional-in-test": "off",
     "import/extensions": [
       "error",
       "ignorePackages",

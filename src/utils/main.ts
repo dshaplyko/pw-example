@@ -13,12 +13,10 @@ export const useState = (state: 'loggedIn' | 'clean') => {
   });
 };
 
-export const useMobile = (device: TDevices) => {
+export const useMobile = (device: 'iphone-13' | 'galaxy-s8') => {
   const devices = {
     'iphone-13': { width: 390, height: 844 },
     'galaxy-s8': { width: 360, height: 740 },
-    'tablet-p': { width: 820, height: 1180 },
-    'tablet-l': { width: 1180, height: 820 },
   };
 
   const { width, height } = devices[device];
