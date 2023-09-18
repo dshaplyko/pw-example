@@ -34,4 +34,8 @@ export default abstract class BasePage implements IPage {
       await this.page.reload({ waitUntil: 'domcontentloaded' });
     });
   }
+
+  async saveStorageState(path: string): Promise<void> {
+    await this.page.context().storageState({ path });
+  }
 }

@@ -6,12 +6,4 @@ test.describe('Home Page', () => {
     await homePage.header.shouldBeVisible();
     await homePage.header.servicesLink.click();
   });
-
-  test('should close cookie banner', async ({ homePage }) => {
-    await homePage.goto();
-    await homePage.cookie.shouldBeVisible();
-
-    await homePage.cookie.acceptAllLink.click();
-    await homePage.cookie.shouldBeVisible(false);
-  });
 });

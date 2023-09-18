@@ -7,3 +7,4 @@ reports
 .env
 .DS_Store
 .vscode
+src/data/states/

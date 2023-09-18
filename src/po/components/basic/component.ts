@@ -43,7 +43,12 @@ export abstract class Component {
    * @returns {Promise<void>} - returns promise
    */
   async shouldBeVisible(visibility = true): Promise<void> {
-    await test.step(`${this.myType} "${this.componentName}" should be visible=${visibility} on the page`, async () => {
+    const messageMap = {
+      true: 'visible',
+      false: 'not visible',
+    };
+
+    await test.step(`${this.myType} "${this.componentName}" should be ${messageMap[String(visibility)]} on the page`, async () => {
       await expect(this.rootLocator, { message: this.getErrorMessage('is not visible') }).toBeVisible({
         visible: visibility,
       });

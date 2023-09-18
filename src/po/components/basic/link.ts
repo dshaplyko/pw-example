@@ -10,7 +10,12 @@ export class Link extends Component {
    * @returns {Promise<void>} - returns promise
    */
   async shouldBeActive(isActive = true): Promise<void> {
-    await test.step(`${this.myType} "${this.componentName}" should be active=${isActive} on the page`, async () => {
+    const messageMap = {
+      true: 'active',
+      false: 'not active',
+    };
+
+    await test.step(`${this.myType} "${this.componentName}" should be ${messageMap[String(isActive)]} on the page`, async () => {
       const assert = isActive
         ? expect(this.rootLocator, { message: this.getErrorMessage('is not active') })
         : expect(this.rootLocator, { message: this.getErrorMessage('is active') }).not;
