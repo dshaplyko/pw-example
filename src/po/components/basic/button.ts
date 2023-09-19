@@ -16,10 +16,6 @@ export class Button extends Component {
     });
   }
 
-  /**
-   * double click the component
-   * @returns {Promise<void>} - returns promise
-   */
   async doubleClick() {
     await test.step(`Double clicking ${this.myType} with name "${this.componentName}"`, async () => {
       await this.rootLocator.dblclick();
