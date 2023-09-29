@@ -35,6 +35,12 @@ export abstract class Component {
     return this.name;
   }
 
+  /**
+   * Returns an error message for the given action.
+   * The message includes the type of component, component name, root locator, and the action being performed.
+   * @param action The action being performed.
+   * @returns The error message.
+   */
   getErrorMessage(action: string): string {
     return `The ${this.myType} with name "${this.componentName}" and locator ${this.rootLocator} ${action}`;
   }

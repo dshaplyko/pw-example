@@ -10,7 +10,7 @@
 
 ## 1 - Description
 
-- playwright v1.35+: https://playwright.dev/
+- playwright v1.38+: https://playwright.dev/
 - Typescript: https://www.typescriptlang.org/
 
 <a name="installation"/>
