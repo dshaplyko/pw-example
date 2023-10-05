@@ -18,7 +18,7 @@ test.describe('Home Page', () => {
     await homePage.shouldHaveTheme('light');
   });
 
-  test('should search for a term', async ({ homePage, searchResultsPage }) => {
+  test(`should search for "${searchTerm}" search term`, async ({ homePage, searchResultsPage }) => {
     await homePage.goto();
     await homePage.header.searchButton.click();
     await homePage.searchPanel.shouldBeVisible();

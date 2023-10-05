@@ -74,11 +74,7 @@ export default abstract class BasePage implements IPage {
    * @param theme - The theme to check for.
    */
   async shouldHaveTheme(theme: 'dark' | 'light'): Promise<void> {
-    const themeMap = {
-      dark: /dark-mode/,
-      light: /light-mode/,
-    };
-    await this.body.shouldHaveClass(new RegExp(themeMap[theme]));
+    await this.body.shouldHaveClass(new RegExp(`${theme}-mode`));
   }
 
   async shouldHaveUrl(url: string): Promise<void> {
