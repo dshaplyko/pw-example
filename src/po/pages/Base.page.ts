@@ -1,8 +1,9 @@
-import { Page, test } from '@playwright/test';
+import { Page, expect, test } from '@playwright/test';
 import { Header } from '../components/header.component';
 import { Cookie } from '../components/cookie.component';
 import config from '../../../playwright.config';
 import { Component } from '../components/basic/component';
+import { SearchPanel } from '../components/search.panel.component';
 
 interface IPage {
   readonly page: Page;
@@ -21,6 +22,8 @@ export default abstract class BasePage implements IPage {
 
   readonly body: Component;
 
+  readonly searchPanel: SearchPanel;
+
   /**
    * Creates an instance of BasePage.
    * @param {Page} page - The Playwright page object.
@@ -29,6 +32,7 @@ export default abstract class BasePage implements IPage {
     this.page = page;
     this.header = new Header({ name: 'Header', locator: this.page.locator('.header__content') });
     this.cookie = new Cookie({ name: 'Cookie', locator: this.page.locator('div#onetrust-banner-sdk') });
+    this.searchPanel = new SearchPanel({ name: 'Search Panel', locator: this.page.locator('div.header-search__panel') });
     this.body = new Component({ name: 'Body', locator: this.page.locator('body') });
   }
 
@@ -75,5 +79,11 @@ export default abstract class BasePage implements IPage {
       light: /light-mode/,
     };
     await this.body.shouldHaveClass(new RegExp(themeMap[theme]));
+  }
+
+  async shouldHaveUrl(url: string): Promise<void> {
+    await test.step(`page should have "${url}" url`, async () => {
+      await expect(this.page).toHaveURL(new RegExp(url));
+    });
   }
 }

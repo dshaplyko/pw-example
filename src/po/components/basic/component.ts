@@ -81,7 +81,7 @@ export class Component {
    * @param {string} text - The text to check for.
    * @returns {Promise<void>} - returns promise
    */
-  async shouldHaveText(text: string): Promise<void> {
+  async shouldHaveText(text: string | RegExp): Promise<void> {
     await test.step(`${this.myType} "${this.componentName}" should have text "${text}"`, async () => {
       await expect(this.rootLocator, { message: this.getErrorMessage(`does not have text "${text}"`) }).toContainText(text);
     });
