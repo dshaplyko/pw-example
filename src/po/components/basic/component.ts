@@ -4,20 +4,31 @@ export type ComponentProps = {
   name?: string;
   locator: Locator;
 };
+
 /**
  * Base class for all components
  */
-export abstract class Component {
+export class Component {
   readonly rootLocator: Locator;
 
   private name: string | undefined;
 
   constructor({ name, locator }: ComponentProps) {
-    this.name = name;
+    /**
+     * Locator of the root element of the component
+     * @type {Locator}
+     */
     this.rootLocator = locator;
+
+    /**
+     * Name of the component
+     * @type {string | undefined}
+     */
+    this.name = name;
   }
 
   /**
+   * Type of the component
    * @returns {string} - returns type of the component
    */
   get myType(): string {
@@ -25,7 +36,9 @@ export abstract class Component {
   }
 
   /**
+   * Name of the component
    * @returns {string} - returns name of the component
+   * @throws {Error} - if name is not provided
    */
   get componentName(): string {
     if (!this.name) {
@@ -38,8 +51,8 @@ export abstract class Component {
   /**
    * Returns an error message for the given action.
    * The message includes the type of component, component name, root locator, and the action being performed.
-   * @param action The action being performed.
-   * @returns The error message.
+   * @param {string} action - The action being performed.
+   * @returns {string} - The error message.
    */
   getErrorMessage(action: string): string {
     return `The ${this.myType} with name "${this.componentName}" and locator ${this.rootLocator} ${action}`;
@@ -47,7 +60,7 @@ export abstract class Component {
 
   /**
    * Checks if the component is visible or not on the page.
-   * @param visibility - A boolean indicating if the component should be visible.
+   * @param {boolean} visibility - A boolean indicating if the component should be visible.
    * @returns {Promise<void>} - returns promise
    */
   async shouldBeVisible(visibility = true): Promise<void> {
@@ -63,6 +76,11 @@ export abstract class Component {
     });
   }
 
+  /**
+   * Checks if the component has the given text.
+   * @param {string} text - The text to check for.
+   * @returns {Promise<void>} - returns promise
+   */
   async shouldHaveText(text: string): Promise<void> {
     await test.step(`${this.myType} "${this.componentName}" should have text "${text}"`, async () => {
       await expect(this.rootLocator, { message: this.getErrorMessage(`does not have text "${text}"`) }).toContainText(text);
@@ -70,7 +88,18 @@ export abstract class Component {
   }
 
   /**
-   * clicks on the component
+   * Checks if the component has the given class.
+   * @param {string | RegExp} text - The class name or regular expression to check for.
+   * @returns {Promise<void>} - returns promise
+   */
+  async shouldHaveClass(text: string | RegExp): Promise<void> {
+    await test.step(`${this.myType} "${this.componentName}" should have class "${text}"`, async () => {
+      await expect(this.rootLocator, { message: this.getErrorMessage(`does not have class "${text}"`) }).toHaveClass(text);
+    });
+  }
+
+  /**
+   * Clicks on the component.
    * @returns {Promise<void>} - returns promise
    */
   async click(): Promise<void> {

@@ -2,6 +2,7 @@ import { Page, test } from '@playwright/test';
 import { Header } from '../components/header.component';
 import { Cookie } from '../components/cookie.component';
 import config from '../../../playwright.config';
+import { Component } from '../components/basic/component';
 
 interface IPage {
   readonly page: Page;
@@ -18,6 +19,8 @@ export default abstract class BasePage implements IPage {
 
   readonly cookie: Cookie;
 
+  readonly body: Component;
+
   /**
    * Creates an instance of BasePage.
    * @param {Page} page - The Playwright page object.
@@ -26,6 +29,7 @@ export default abstract class BasePage implements IPage {
     this.page = page;
     this.header = new Header({ name: 'Header', locator: this.page.locator('.header__content') });
     this.cookie = new Cookie({ name: 'Cookie', locator: this.page.locator('div#onetrust-banner-sdk') });
+    this.body = new Component({ name: 'Body', locator: this.page.locator('body') });
   }
 
   /**
@@ -59,5 +63,17 @@ export default abstract class BasePage implements IPage {
    */
   async saveStorageState(path: string): Promise<void> {
     await this.page.context().storageState({ path });
+  }
+
+  /**
+   * Checks if the page has the specified theme.
+   * @param theme - The theme to check for.
+   */
+  async shouldHaveTheme(theme: 'dark' | 'light'): Promise<void> {
+    const themeMap = {
+      dark: /dark-mode/,
+      light: /light-mode/,
+    };
+    await this.body.shouldHaveClass(new RegExp(themeMap[theme]));
   }
 }
