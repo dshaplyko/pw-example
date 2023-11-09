@@ -10,11 +10,6 @@ export default class ServicesPage extends BasePage {
   /** The title of the services page. */
   readonly servicesTitle: Label;
 
-  /**
-   * Creates an instance of ServicesPage.
-   * @param {Page} page - The Playwright page object.
-   * @param {string} [url='/services'] - The URL of the services page.
-   */
   constructor(
     public page: Page,
     readonly url = '/services',
