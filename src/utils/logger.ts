@@ -31,13 +31,19 @@ export class Logger {
     });
   }
 
+  private logMessage(type: 'info' | 'debug', message: string): void {
+    this.loggerInstance[type](`${this.moduleName}: ${message}`);
+  }
+
+  private isDebugModeEnabled(): boolean {
+    return process.env.DEBUG === 'true';
+  }
+
   info(message: string): void {
-    this.loggerInstance.info(`${this.moduleName}: ${message}`);
+    this.logMessage('info', message);
   }
 
   debug(message: string): void {
-    if (process.env.DEBUG) {
-      this.loggerInstance.debug(`${this.moduleName}: ${message}`);
-    }
+    if (this.isDebugModeEnabled()) this.logMessage('debug', message);
   }
 }

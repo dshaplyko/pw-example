@@ -8,3 +8,4 @@ reports
 .DS_Store
 .vscode
 src/data/states/
+.promptLib
