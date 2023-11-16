@@ -26,8 +26,8 @@
     "@reportportal/agent-js-playwright": "^5.1.4",
     "@types/lodash": "^4.14.201",
     "@types/node": "20.9.0",
-    "@typescript-eslint/eslint-plugin": "^6.10.0",
-    "@typescript-eslint/parser": "^6.10.0",
+    "@typescript-eslint/eslint-plugin": "^6.11.0",
+    "@typescript-eslint/parser": "^6.11.0",
     "dotenv": "^16.3.1",
     "eslint": "^8.53.0",
     "eslint-config-airbnb-base": "^15.0.0",
@@ -36,7 +36,7 @@
     "eslint-plugin-playwright": "^0.18.0",
     "husky": "^8.0.3",
     "lodash": "^4.17.21",
-    "prettier": "^3.0.3",
+    "prettier": "^3.1.0",
     "rimraf": "^5.0.5",
     "winston": "^3.11.0"
   }

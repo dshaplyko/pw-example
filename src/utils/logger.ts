@@ -1,14 +1,16 @@
 import winston from 'winston';
 
 export class Logger {
-  readonly module: string;
+  readonly moduleName: string;
 
-  constructor(module: string) {
-    this.module = module;
+  private loggerInstance: winston.Logger;
+
+  constructor(moduleName: string) {
+    this.moduleName = moduleName;
+    this.loggerInstance = this.initializeLogger();
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  createLogger(): winston.Logger {
+  private initializeLogger(): winston.Logger {
     const logFormat = winston.format.printf(({ level, message, timestamp, stack }) => `${timestamp} ${level}: ${stack || message}`);
     return winston.createLogger({
       format: winston.format.combine(
@@ -30,14 +32,12 @@ export class Logger {
   }
 
   info(message: string): void {
-    const newLogger = this.createLogger();
-    newLogger.info(`${this.module}: ${message}`);
+    this.loggerInstance.info(`${this.moduleName}: ${message}`);
   }
 
   debug(message: string): void {
     if (process.env.DEBUG) {
-      const newLogger = this.createLogger();
-      newLogger.debug(`${this.module}: ${message}`);
+      this.loggerInstance.debug(`${this.moduleName}: ${message}`);
     }
   }
 }
