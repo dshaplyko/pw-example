@@ -70,7 +70,7 @@ export class Component {
     };
 
     await test.step(`${this.myType} "${this.componentName}" should be ${messageMap[String(visibility)]} on the page`, async () => {
-      await expect(this.rootLocator, { message: this.getErrorMessage('is not visible') }).toBeVisible({
+      await expect(this.rootLocator.first(), { message: this.getErrorMessage('is not visible') }).toBeVisible({
         visible: visibility,
       });
     });

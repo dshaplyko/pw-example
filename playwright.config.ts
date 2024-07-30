@@ -1,5 +1,4 @@
-import { ReporterDescription, defineConfig } from '@playwright/test';
-import { RP_CI, RP_LOCAL } from './reportConfig';
+import { defineConfig } from '@playwright/test';
 
 export const STORAGE_STATE = './src/data/states/state.json';
 
@@ -13,7 +12,16 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 4 : 4,
-  reporter: process.env.CI ? (RP_CI as ReporterDescription[]) : (RP_LOCAL as ReporterDescription[]),
+  reporter: [
+    ['list'],
+    [
+      'html',
+      {
+        outputFolder: './reports/html',
+        open: 'never',
+      },
+    ],
+  ],
   outputDir: './reports/result',
   projects: [
     {
