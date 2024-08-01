@@ -8,11 +8,11 @@
     "pretest": "npm run delete-reports",
     "postinstall": "npx playwright install",
     "format": "prettier --write .",
-    "check-lint": "eslint . -c ts --fix --max-warnings=0",
-    "check-all": "npm run format && npm run check-lint",
     "test": "playwright test",
+    "lint": "eslint . --fix",
+    "check:all": "npm run lint && npm run format",
     "report": "npx playwright show-report ./reports/html",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "keywords": [
     "Playwright",
@@ -22,22 +22,24 @@
   "author": "Dzmitry_Shaplyka@epam.com",
   "license": "ISC",
   "devDependencies": {
+    "@eslint/js": "^9.8.0",
     "@playwright/test": "1.45.3",
     "@reportportal/agent-js-playwright": "^5.1.9",
     "@types/lodash": "^4.17.7",
     "@types/node": "22.0.0",
-    "@typescript-eslint/eslint-plugin": "^7.18.0",
-    "@typescript-eslint/parser": "^7.18.0",
     "dotenv": "^16.4.5",
-    "eslint": "9.8.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-import": "^2.29.1",
+    "eslint": "^9.8.0",
     "eslint-plugin-playwright": "^1.6.2",
+    "globals": "^15.8.0",
     "husky": "^9.1.4",
     "lodash": "^4.17.21",
     "prettier": "^3.3.3",
     "rimraf": "^6.0.1",
+    "typescript-eslint": "^8.0.0",
     "winston": "^3.13.1"
+  },
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0"
   }
 }

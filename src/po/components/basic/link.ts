@@ -16,7 +16,6 @@ export class Link extends Component {
     };
 
     await test.step(`${this.myType} "${this.componentName}" should be ${messageMap[String(isActive)]} on the page`, async () => {
-      /* eslint-disable playwright/valid-expect */
       const asrt = expect(this.rootLocator, { message: this.getErrorMessage(messageMap[String(isActive)]) });
       const assert = isActive ? asrt : asrt.not;
       await assert.toHaveAttribute('class', /active/);

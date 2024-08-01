@@ -1,5 +1,0 @@
-/node_modules
-/build
-/common
-package-lock.json
-src/data/bz/articles.json
